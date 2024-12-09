@@ -1,9 +1,0 @@
-.ListProduits{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: rgb(225, 221, 221);
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
