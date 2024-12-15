@@ -8,7 +8,15 @@ const ListProduct = ({data}) => {
 
     
     const removePanier=(item)=>{
-        setPanier(panier.filter(i=>i.id!==item.id))
+        let exist=panier.find((product)=>item.id===product.id)
+        if(exist.qte===1){
+            setPanier(panier.filter(i=>i.id!==item.id))
+        }else{
+            exist.totalPrice-=exist.price
+            exist.qte-=1
+            setPanier([...panier])
+        }
+        
     }
     
 
@@ -24,6 +32,8 @@ const ListProduct = ({data}) => {
                         <h3>{item.title}</h3>
                         <p>{item.description}</p>
                         <h5>Price: {item.price}</h5>
+                        <h5>Total Price: {item.totalPrice}</h5>
+                        <h6>Quantity: {item.qte}</h6>
                         <button className='btn btn-success m-1' onClick={()=>removePanier(item)} >Delete au Panier</button>
                     </div>
                 )
@@ -48,7 +58,7 @@ const ListProduct = ({data}) => {
                     <div className='d-flex justify-content-around flex-wrap text-center'>
                         {displayPanier()}
                     </div>
-                    <h4>Total prix :{panier.reduce((acc,item)=>acc+item.price,0)}</h4>
+                    <h4>Total prix :{panier.reduce((acc,item)=>acc+item.totalPrice,0)}</h4>
                 </div>
                 
             </div>

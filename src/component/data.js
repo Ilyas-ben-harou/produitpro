@@ -10,6 +10,7 @@ export const Data = [
         image: produit1,
         description: 'Description produit 1',
         price: 10.99,
+        totalPrice:10.99,
     },
     {
         "id": 2,
@@ -17,6 +18,7 @@ export const Data = [
         image: produit2,
         description: 'Description produit 2',
         price: 10.99,
+        totalPrice:10.99,
     },
     {
         "id": 3,
@@ -24,6 +26,7 @@ export const Data = [
         image: produit3,
         description: 'Description produit 3',
         price: 10.99,
+        totalPrice:10.99,
     },
     {
         "id": 4,
@@ -31,6 +34,7 @@ export const Data = [
         image: produit4,
         description: 'Description produit 4',
         price: 10.99,
+        totalPrice:10.99,
     },
     {
         "id": 5,
@@ -38,6 +42,7 @@ export const Data = [
         image: produit1,
         description: 'Description produit 4',
         price: 10.99,
+        totalPrice:10.99,
     },
     {
         "id": 6,
@@ -45,6 +50,7 @@ export const Data = [
         image: produit2,
         description: 'Description produit 4',
         price: 10.99,
+        totalPrice:10.99,
     },
     {
         "id": 7,
@@ -52,5 +58,6 @@ export const Data = [
         image: produit3,
         description: 'Description produit 4',
         price: 10.99,
+        totalPrice:10.99,
     },
 ];
