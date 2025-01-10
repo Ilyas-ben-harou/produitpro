@@ -1,9 +1,9 @@
 // data.js
-import produit1 from './images/produit1.jpeg';
-import produit2 from './images/produit2.jpeg';
-import produit3 from './images/produit3.jpeg';
-import produit4 from './images/produit4.jpeg';
-export const Data = [
+import produit1 from '../images/produit1.jpeg';
+import produit2 from '../images/produit2.jpeg';
+import produit3 from '../images/produit3.jpeg';
+import produit4 from '../images/produit4.jpeg';
+export const data = [
     {
         "id": 1,
         title: 'Produit 1',
