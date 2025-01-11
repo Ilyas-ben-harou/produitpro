@@ -40,13 +40,13 @@ const NavBar = () => {
 
                     {/* Navigation Links - Desktop */}
                     <div className="hidden md:flex items-center space-x-6">
-                        <Link to="/">
+                        <Link to="produitpro/">
                             <button className="border-2 font-semibold border-white bg-gray-800 text-white px-4 py-2 rounded hover:bg-blue-900 hover:border-blue-900 hover:text-white transition">
                                 List Products
                             </button>
                         </Link>
 
-                        <Link to="/panier">
+                        <Link to="produitpro/panier">
                             <button className="relative flex items-center border-2 font-semibold border-white bg-gray-800 text-white px-4 py-2 rounded hover:bg-blue-900 hover:border-blue-900 hover:text-white transition">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

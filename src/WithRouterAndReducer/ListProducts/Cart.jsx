@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Cart = ({ product, dispatch }) => {
     return (
-        <Link to={`/product/${product.id}`} className="max-w-sm mx-auto my-4 bg-white p-2 shadow-md rounded-lg text-center overflow-hidden hover:scale-x-110 transition cursor-pointer">
+        <Link to={`produitpro/product/${product.id}`} className="max-w-sm mx-auto my-4 bg-white p-2 shadow-md rounded-lg text-center overflow-hidden hover:scale-x-110 transition cursor-pointer">
             <img 
                 className="w-full h-48 object-cover hover:scale-105 transition" 
                 src={product.image} 
