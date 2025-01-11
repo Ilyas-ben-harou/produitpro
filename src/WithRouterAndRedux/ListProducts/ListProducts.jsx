@@ -9,7 +9,6 @@ import { caders } from '../data/caders'
 const ListProducts = () => {
     const [isAutoplay, setIsAutoplay] = useState(true);
     const index = useSelector((state) => state.index.index)
-    console.log(index)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,65 +19,73 @@ const ListProducts = () => {
         }, 3000);
     
         return () => clearInterval(timer);
-    }, [isAutoplay]);
+    }, [isAutoplay, dispatch]);
 
     return (
-        <div className='bg-slate-600'>
+        <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-600">
             <NavBar />
-            {/* carousel section */}
+            
+            {/* Carousel Section */}
             <div 
-                className="w-screen h-screen relative"
+                className="relative h-[50vh] md:h-[70vh] lg:h-[80vh] w-full"
                 onMouseEnter={() => setIsAutoplay(false)}
                 onMouseLeave={() => setIsAutoplay(true)}
             >
-                {/* Image container - fullscreen */}
-                <div className="w-full h-full">
-                    <img src={caders[index]} className="w-full h-full object-cover" alt="" />
+                {/* Image Container */}
+                <div className="relative w-full h-full overflow-hidden">
+                    <img 
+                        src={caders[index]} 
+                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out" 
+                        alt="Carousel image" 
+                    />
 
-                    {/* Navigation buttons */}
-                    <div className="absolute inset-0 flex items-center justify-between px-4">
+                    {/* Navigation Buttons */}
+                    <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between">
                         <button
                             onClick={() => dispatch(prev())}
-                            className="bg-black/50 hover:bg-black/70 text-center text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                            className="transform hover:scale-110 bg-black/40 hover:bg-black/60 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out"
+                            aria-label="Previous slide"
                         >
-                            <span className="text-2xl font-bold">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                                </svg>
-
-                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                            </svg>
                         </button>
 
                         <button
                             onClick={() => dispatch(next())}
-                            className="bg-black/50 hover:bg-black/70 text-center  text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                            className="transform hover:scale-110 bg-black/40 hover:bg-black/60 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out"
+                            aria-label="Next slide"
                         >
-                            <span className="text-2xl font-bold">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                                </svg>
-
-                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
                         </button>
                     </div>
 
-                    {/* Navigation circles - positioned at bottom center of image */}
-                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex justify-center gap-4">
+                    {/* Navigation Dots */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
                         {[0, 1, 2, 3].map((dot) => (
                             <button
                                 key={dot}
                                 onClick={() => dispatch(select(dot))}
-                                className={`w-3 h-3 rounded-full transition-colors ${index === dot ? 'bg-white' : 'bg-white/50'
-                                    } hover:bg-white`}
+                                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 
+                                    ${index === dot 
+                                        ? 'bg-white scale-110' 
+                                        : 'bg-white/50 hover:bg-white/75'}`}
+                                aria-label={`Go to slide ${dot + 1}`}
                             />
                         ))}
                     </div>
                 </div>
             </div>
 
-            <div>
-                <h1 className=' text-4xl m-4 text-white mt-10'>Liste products </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-3/4 mx-auto">
+            {/* Products Section */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                    Our Products
+                </h1>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {data.map((product) => (
                         <Cart
                             key={product.id}
@@ -87,9 +94,7 @@ const ListProducts = () => {
                     ))}
                 </div>
             </div>
-
         </div>
-
     )
 }
 
