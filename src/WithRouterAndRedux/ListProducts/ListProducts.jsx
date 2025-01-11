@@ -33,7 +33,7 @@ const ListProducts = () => {
             >
                 {/* Image container - fullscreen */}
                 <div className="w-full h-full">
-                    <img src={caders[index]} className="w-full h-full object-cover transition-opacity  "alt="" />
+                    <img src={caders[index]} className="w-full h-full object-cover" alt="" />
 
                     {/* Navigation buttons */}
                     <div className="absolute inset-0 flex items-center justify-between px-4">
@@ -77,8 +77,8 @@ const ListProducts = () => {
             </div>
 
             <div>
-                <h1 className='text-center text-3xl text-white mt-10'>Liste products </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <h1 className=' text-4xl m-4 text-white mt-10'>Liste products </h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-3/4 mx-auto">
                     {data.map((product) => (
                         <Cart
                             key={product.id}

@@ -25,8 +25,11 @@ const panierSlice = createSlice({
                 state.panier = state.panier.filter((item) => item.id !== action.payload);
             }
         },
+        clear: (state) => {
+            state.panier = []
+        },
     }
 });
 
-export const { addItem,removeItem } = panierSlice.actions;
+export const { addItem,removeItem,clear } = panierSlice.actions;
 export default panierSlice.reducer;
