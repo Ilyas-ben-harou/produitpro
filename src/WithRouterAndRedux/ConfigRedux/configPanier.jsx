@@ -1,4 +1,3 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const panierSlice = createSlice({
@@ -8,28 +7,46 @@ const panierSlice = createSlice({
     },
     reducers: {
         addItem: (state, action) => {
-            let exist = state.panier.find((item) => item.id === action.payload.id);
+            const exist = state.panier.find((item) => item.id === action.payload.id);
             if (exist) {
-                exist = { ...exist, 'totalPrice': exist.totalPrice += exist.price, 'qte': exist.qte += 1 }
-                state.panier = state.panier.map(item => item.id === exist.id && exist);
+                state.panier = state.panier.map(item =>
+                    item.id === exist.id
+                        ? {
+                            ...item,
+                            totalPrice: item.price * (item.qte + 1),
+                            qte: item.qte + 1
+                        }
+                        : item
+                );
             } else {
-                state.panier=[...state.panier, { ...action.payload, 'qte': 1 }]
+                state.panier.push({
+                    ...action.payload,
+                    qte: 1,
+                    totalPrice: action.payload.price
+                });
             }
         },
         removeItem: (state, action) => {
-            let exist = state.panier.find((item) => item.id === action.payload);
-            if (exist.qte>1) {
-                exist = { ...exist, 'price': exist.totalPrice -= exist.price, 'qte': exist.qte -= 1 }
-                state.panier = state.panier.map(item => item.id === exist.id && exist);
+            const exist = state.panier.find((item) => item.id === action.payload);
+            if (exist.qte > 1) {
+                state.panier = state.panier.map(item =>
+                    item.id === exist.id
+                        ? {
+                            ...item,
+                            totalPrice: item.totalPrice - item.price,
+                            qte: item.qte - 1
+                        }
+                        : item
+                );
             } else {
                 state.panier = state.panier.filter((item) => item.id !== action.payload);
             }
         },
         clear: (state) => {
-            state.panier = []
+            state.panier = [];
         },
     }
 });
 
-export const { addItem,removeItem,clear } = panierSlice.actions;
+export const { addItem, removeItem, clear } = panierSlice.actions;
 export default panierSlice.reducer;
